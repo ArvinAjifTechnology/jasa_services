@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_motorcycle_id');
             $table->unsignedBigInteger('type_of_service_id');
             $table->float('total_amount');
-            $table->enum('status', ['pending', 'completed', 'canceled'])->default('pending');
+            $table->enum('status', ['unpaid', 'in_queue', 'in_process', 'completed'])->default('pending');
             $table->string('queue_number')->nullable();
             $table->string('transaction_code')->unique();
             // Menambahkan foreign key untuk hubungan dengan tabel users
