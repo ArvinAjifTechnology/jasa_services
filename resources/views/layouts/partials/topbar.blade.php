@@ -44,8 +44,8 @@
                     {{-- <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle"> --}}
                 </span>
                 <span>
-                    <span class="account-user-name">Arvin</span>
-                    <span class="account-position">Ajif</span>
+                    <span class="account-user-name">{{ auth()->user()->full_name }}</span>
+                    <span class="account-position">{{ Str::ucfirst(auth()->user()->role) }}</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
