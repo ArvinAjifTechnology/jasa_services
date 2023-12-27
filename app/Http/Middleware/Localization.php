@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserMiddleware
+class Localization
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,9 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user() && auth()->user()->role == 'user') {
-            return $next($request);
+        if (session()->has('locale')) {
+            app()->setLocale(session()->get('locale'));
         }
-    
-        return redirect('/');
+        return $next($request);
     }
 }

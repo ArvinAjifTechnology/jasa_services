@@ -1,6 +1,6 @@
 <div class="leftside-menu">
     <!-- LOGO -->
-    <a href="{{ url('/dashborad') }}" class="logo text-center logo-light">
+    <a href="{{ url('/') }}" class="logo text-center logo-light">
         <span class="logo-lg">
             <img
                 src="{{ asset('') }}assets/images/logo.png"
@@ -38,88 +38,71 @@
     <div class="h-100" id="leftside-menu-container" data-simplebar="">
         <ul class="side-nav">
             <li class="side-nav-item">
-                <a href="{{ route('dashboard.index') }}" class="side-nav-link">
+                {{-- <a href="{{ route('dashboard.index') }}" class="side-nav-link"> --}}
+                <a href="" class="side-nav-link">
                     <i class="uil-home-alt"></i>
-                    <span>{{ __("menu.Dashboard") }}</span>
+                    <span>{{ __("dashboard") }}</span>
                 </a>
             </li>
 
             @can('admin')
             <li class="side-nav-title side-nav-item">
-                {{ __("menu.MasterData") }}
+                {{ __("masterdata") }}
             </li>
             <li class="side-nav-item">
                 <a
-                    href="{{ route('admin.users.index') }}"
+                    href=""
                     class="side-nav-link"
                 >
                     <i class="uil-user"></i>
-                    <span>{{ __("menu.Users") }}</span>
+                    <span>{{ __("manage_users") }}</span>
                 </a>
             </li>
 
             <li class="side-nav-item">
-                <a href="{{ url('admin/rooms') }}" class="side-nav-link">
+                <a href="" class="side-nav-link">
                     <i class="uil-window"></i>
-                    <span>{{ __("menu.Rooms") }}</span>
+                    <span>{{ __("type_of_services") }}</span>
                 </a>
             </li>
-
-            <li class="side-nav-item">
-                <a href="{{ url('admin/items') }}" class="side-nav-link">
-                    <i class="uil-clipboard-alt"></i>
-                    <span>{{ __("menu.Items") }}</span>
-                </a>
-            </li>
-
-            @endcan @can('operator')
-                <li class="side-nav-title side-nav-item">
-                    {{ __("menu.MasterData") }}
-                </li>
-            <li class="side-nav-item">
-                <a href="{{ url('operator/rooms') }}" class="side-nav-link">
-                    <i class="uil-window"></i>
-                    <span>{{ __("menu.Rooms") }}</span>
-                </a>
-            </li>
-
-            <li class="side-nav-item">
-                <a href="{{ url('operator/items') }}" class="side-nav-link">
-                    <i class="uil-clipboard-alt"></i>
-                    <span>{{ __("menu.Items") }}</span>
-                </a>
-            </li>
-
             @endcan
-
             <li class="side-nav-title side-nav-item">
-                {{ __("menu.MainSystem") }}
+                {{ __("main_system") }}
             </li>
+            @can('user')
+            <li class="side-nav-item">
+                <a href="" class="side-nav-link">
+                    <i class="uil-shopping-cart-alt"></i>
+                    <span>{{ __("manage_motorcycle") }}</span>
+                </a>
+            </li>
+            @endcan
             @can('admin')
             <li class="side-nav-item">
-                <a href="{{ url('admin/borrows') }}" class="side-nav-link">
+                <a href="" class="side-nav-link">
                     <i class="uil-shopping-cart-alt"></i>
-                    <span>{{ __("menu.Borrow") }}</span>
+                    <span>{{ __("transction") }}</span>
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="{{ url('/borrow-report') }}" class="side-nav-link">
+                <a href="" class="side-nav-link">
                     <i class="uil-chart"></i>
-                    <span>{{ __("menu.BorrowReport") }}</span>
+                    <span>{{ __("transaction_report") }}</span>
                 </a>
             </li>
-            @endcan @can('operator')
+            @endcan
+            @can('mechanic')
             <li class="side-nav-item">
-                <a href="{{ url('operator/borrows') }}" class="side-nav-link">
+                <a href="" class="side-nav-link">
                     <i class="uil-shopping-cart-alt"></i>
-                    <span>{{ __("menu.Borrow") }}</span>
+                    <span>{{ __("transaction") }}</span>
                 </a>
             </li>
-            @endcan @can('borrower')
+            @endcan @can('users')
             <li class="side-nav-item">
-                <a href="{{ url('borrower/borrows') }}" class="side-nav-link">
+                <a href="" class="side-nav-link">
                     <i class="uil-shopping-cart-alt"></i>
-                    <span>{{ __("menu.Borrow") }}</span>
+                    <span>{{ __("transaction") }}</span>
                 </a>
             </li>
             @endcan

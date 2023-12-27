@@ -13,17 +13,14 @@ return new class extends Migration
     {
         Schema::create('user_motorcycles', function (Blueprint $table) {
             $table->id();
-            Schema::create('user_motorcycles', function (Blueprint $table) {
-                $table->id();
-                $table->unsignedBigInteger('user_id');
-                $table->string('motorcycle_brand');
-                $table->string('motorcycle_model');
-                $table->integer('manufacturing_year');
-                $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->string('motorcycle_brand');
+            $table->string('motorcycle_model');
+            $table->integer('manufacturing_year');
+            $table->string('license_plate'); // Menggunakan "license_plate" sebagai kolom plat nomor
             
-                // Menambahkan foreign key untuk hubungan dengan tabel users
-                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            });
+            // Menambahkan foreign key untuk hubungan dengan tabel users
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

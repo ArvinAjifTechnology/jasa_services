@@ -17,17 +17,22 @@ return new class extends Migration
             $table->unsignedBigInteger('user_motorcycle_id');
             $table->unsignedBigInteger('type_of_service_id');
             $table->float('total_amount');
-            $table->enum('status', ['unpaid', 'in_queue', 'in_process', 'completed'])->default('pending');
+            $table->enum('status', ['unpaid', 'in_queue', 'in_process', 'completed'])->default('unpaid');
             $table->string('queue_number')->nullable();
             $table->string('transaction_code')->unique();
+            $table->enum('payment_method', ['BNI', 'BRI', 'GOPAY', 'OVO', 'DANA', 'SHOPPE'])->nullable();
+            $table->enum('payment_status', ['pending', 'success', 'failed'])->default('pending');
+            $table->string('payment_proof')->nullable(); // Kolom untuk menyimpan nama file bukti pembayaran
+            
             // Menambahkan foreign key untuk hubungan dengan tabel users
-        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             // Menambahkan foreign key untuk hubungan dengan tabel user_motorcycles
             $table->foreign('user_motorcycle_id')->references('id')->on('user_motorcycles')->onDelete('cascade');
 
             // Menambahkan foreign key untuk hubungan dengan tabel type_of_services
             $table->foreign('type_of_service_id')->references('id')->on('type_of_services')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
