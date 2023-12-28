@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\UserController as AdminUserController;
 use \App\Http\Controllers\Admin\TypeOfServiceController as AdminTypeOfServiceController;
 use \App\Http\Controllers\User\UserMotorCycleController;
+use App\Http\Controllers\ServiceSelectionController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +54,9 @@ Route::middleware('verified')->group(function () {
     Route::middleware(['user'])->group(function () {
         // route yang hanya bisa diakses oleh user
         Route::resource('/user/user-motorcycles', UserMotorcycleController::class)->names('user.user-motorcycles');
+        Route::get('/user/service-selection', [ServiceSelectionController::class, 'showServiceSelection']);
+        Route::post('/user/process-service-selection', [ServiceSelectionController::class, 'processServiceSelection'])
+            ->name('process-service-selection');
         // Route::resource('/user/rooms', RoomController::class)->only(['index', 'show']);
         // Route::resource('/user/items', ItemController::class);
         // Route::resource('/user/borrows', BorrowController::class);
