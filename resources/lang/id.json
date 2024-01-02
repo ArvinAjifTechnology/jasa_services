@@ -54,6 +54,8 @@
         "License Plate": "Nomor Plat",
         "Back to List": "Kembali ke Daftar",
         "transaction_id": "ID Transaksi",
-        "total_amount" : "Jumlah Tagihan"
+        "total_amount" : "Jumlah Tagihan",
+        "my_account": "Akun Saya",
+        "logout": "Akun Saya"
         
 }

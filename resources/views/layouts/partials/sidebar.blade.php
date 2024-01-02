@@ -39,7 +39,7 @@
         <ul class="side-nav">
             <li class="side-nav-item">
                 {{-- <a href="{{ route('dashboard.index') }}" class="side-nav-link"> --}}
-                <a href="" class="side-nav-link">
+                <a href="{{ route('dashboard.index') }}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span>{{ __("dashboard") }}</span>
                 </a>
@@ -51,7 +51,7 @@
             </li>
             <li class="side-nav-item">
                 <a
-                    href=""
+                    href="{{ route('admin.users') }}"
                     class="side-nav-link"
                 >
                     <i class="uil-user"></i>
@@ -60,7 +60,7 @@
             </li>
 
             <li class="side-nav-item">
-                <a href="" class="side-nav-link">
+                <a href="{{ route('admin.type-of-services') }}" class="side-nav-link">
                     <i class="uil-window"></i>
                     <span>{{ __("type_of_services") }}</span>
                 </a>
@@ -71,7 +71,7 @@
             </li>
             @can('user')
             <li class="side-nav-item">
-                <a href="" class="side-nav-link">
+                <a href="{{ route('user.user-motorcycles') }}" class="side-nav-link">
                     <i class="uil-shopping-cart-alt"></i>
                     <span>{{ __("manage_motorcycle") }}</span>
                 </a>
@@ -79,9 +79,9 @@
             @endcan
             @can('admin')
             <li class="side-nav-item">
-                <a href="" class="side-nav-link">
+                <a href="{{ route('transactions.index') }}" class="side-nav-link">
                     <i class="uil-shopping-cart-alt"></i>
-                    <span>{{ __("transction") }}</span>
+                    <span>{{ __("transaction") }}</span>
                 </a>
             </li>
             <li class="side-nav-item">
@@ -93,14 +93,14 @@
             @endcan
             @can('mechanic')
             <li class="side-nav-item">
-                <a href="" class="side-nav-link">
+                <a href="{{ route('transactions.index') }}" class="side-nav-link">
                     <i class="uil-shopping-cart-alt"></i>
                     <span>{{ __("transaction") }}</span>
                 </a>
             </li>
             @endcan @can('users')
             <li class="side-nav-item">
-                <a href="" class="side-nav-link">
+                <a href="{{ route('transactions.index') }}" class="side-nav-link">
                     <i class="uil-shopping-cart-alt"></i>
                     <span>{{ __("transaction") }}</span>
                 </a>

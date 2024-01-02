@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use \App\Http\Controllers\TransactionController;
+use \App\Http\Controllers\User\UserMotorCycleController;
+use App\Http\Controllers\Transaction\PaymentSubmittedController;
+use App\Http\Controllers\Transaction\ServiceSelectionController;
 use \App\Http\Controllers\Admin\UserController as AdminUserController;
 use \App\Http\Controllers\Admin\TypeOfServiceController as AdminTypeOfServiceController;
-use \App\Http\Controllers\User\UserMotorCycleController;
-use App\Http\Controllers\Transaction\ServiceSelectionController;
-use App\Http\Controllers\Transaction\PaymentValidationController;
 
 
 
@@ -26,67 +28,42 @@ Route::get('locale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('locale');
 
-Route::get('/', function () {
-    return view('layouts.main');
-});
 
 Auth::routes(['verify' => TRUE]);
 
 Route::middleware('verified')->group(function () {
-
+    
     Route::middleware('admin')->group(function () {
         // route yang hanya bisa diakses oleh admin
         Route::resource('/admin/users', AdminUserController::class)->names('admin.users');
         Route::resource('/admin/type-of-services', AdminTypeOfServiceController::class)->names('admin.type-of-services');
-
-        // Route::resource('/admin/rooms', RoomController::class);
-        // Route::resource('/admin/items', ItemController::class);
-        // Route::resource('/admin/borrows', BorrowController::class);
-        // Route::get('/admin/borrows/{borrow_code}/submit-borrow-request', [BorrowController::class, 'submitBorrowRequest']);
-        // Route::put('/admin/borrows/{borrow_code}/verify-submit-borrow-request', [BorrowController::class, 'verifySubmitBorrowRequest']);
-        // Route::put('/admin/borrows/{id}/return', [BorrowController::class, 'returnBorrow'])->name('borrows.return');
-        // Route::put('/admin/borrows/{id}/reject-borrow-request', [BorrowController::class, 'rejectBorrowRequest'])->name('borrows.return');
-        // Route::post('/admin/users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('admin.users.reset-password');
-        // Route::get('/borrow-report', [BorrowReportController::class, 'index'])->name('borrow-report.index');
-        // Route::post('/borrow-report', [BorrowReportController::class, 'generateReport'])->name('borrow-report.generate');
-        // Route::post('/borrow-report/export/', [BorrowReportController::class, 'export'])->name('borrow-report.export');
     });
-
+    
     Route::middleware(['user'])->group(function () {
         // route yang hanya bisa diakses oleh user
         Route::resource('/user/user-motorcycles', UserMotorcycleController::class)->names('user.user-motorcycles');
-        Route::get('/user/service-selection', [ServiceSelectionController::class, 'showServiceSelection']);
+        Route::get('/user/service-selection', [ServiceSelectionController::class, 'showServiceSelection'])->name('transactions.create');
         Route::post('/user/process-service-selection', [ServiceSelectionController::class, 'processServiceSelection'])
             ->name('process-service-selection');
-        Route::get('/payment-validation/{transaction_id}', [PaymentValidationController::class, 'showPaymentValidationForm'])
-            ->name('payment_validation_form');
-        Route::post('/process-payment-validation', [PaymentValidationController::class, 'processPaymentValidation'])
-            ->name('process_payment_validation');
-    });
-
-    Route::middleware('mechanic')->group(function () {
-        // route yang hanya bisa diakses oleh mechanic
-        // Route::get('/mechanic/dashboard', 'BorrowerController@dashboard');
-        // Route::resource('/mechanic/borrows', BorrowerBorrowController::class);
-        // Route::get('/mechanic/borrows/create/search-item', [BorrowerBorrowController::class, 'searchItemView']);
-        // Route::post('/mechanic/borrows/create/search-item', [BorrowerBorrowController::class, 'searchItem'])->name('mechanic.borrow.search-item');
-        // Route::get('/mechanic/borrows/create/{item_code}/submit-borrow-request', [BorrowerBorrowController::class, 'submitBorrowRequestView']);
-        // Route::get('/mechanic/borrows/create/submit-borrow-request-two', [BorrowerBorrowController::class, 'submitBorrowRequestViewTwo']);
-        // Route::post('/mechanic/borrows/create/submit-borrow-request-two', [BorrowerBorrowController::class, 'submitBorrowRequestViewTwo']);
-        // Route::post('/mechanic/borrows/create/submit-borrow-request-page-two', [BorrowerBorrowController::class, 'submitBorrowRequestViewTwo']);
-        // Route::post('/mechanic/borrows/create/submit-borrow-request-verifiy/', [BorrowerBorrowController::class, 'verifySubmitBorrowRequestView']);
-        // Route::get('/mechanic/borrows/create/submit-borrow-request-verifiy/', [BorrowerBorrowController::class, 'verifySubmitBorrowRequestView']);
-    });
-
-    Route::middleware('auth')->group(function () {
-        // route yang hanya bisa diakses oleh mechanic
-        // Route::get('/mechanic/dashboard', 'BorrowerController@dashboard');
-        // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-        // Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-        // Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-        // Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        // Route::get('/change-password', [ProfileController::class, 'showChangePasswordForm'])->name('password.change');
-        // Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('password.update');
+            Route::get('/payment-submitted/{transaction_id}', [PaymentSubmittedController::class, 'showPaymentSubmittedForm'])
+            ->name('payment_submitted_form');
+            Route::post('/process-payment-submitted', [PaymentSubmittedController::class, 'processPaymentSubmitted'])
+            ->name('process_payment_submitted');
+        });
+        Route::middleware('auth')->group(function () {
+            // route yang hanya bisa diakses oleh mechanic
+            Route::get('/', function () {
+                return rediret('/dashboard');
+            });
+            Route::get('/dashboard',  [DashboardController::class, 'index'])->name('dashboard.index');
+            Route::resource('transactions', TransactionController::class)->except('create');
+            Route::get('/mechanic/dashboard', 'BorrowerController@dashboard');
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+            Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+            Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+            Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+            Route::get('/change-password', [ProfileController::class, 'showChangePasswordForm'])->name('password.change');
+            Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('password.update');
     });
 
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

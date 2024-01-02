@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('user_motorcycle_id')->nullable();
-            $table->unsignedBigInteger('type_of_service_id');
+            $table->unsignedBigInteger('mechanic_id')->nullable();
+            $table->unsignedBigInteger('type_of_service_id')->nullable();
             $table->float('total_amount');
-            $table->enum('status', ['unpaid', 'in_queue', 'in_process', 'completed'])->default('unpaid');
+            $table->enum('status', ['pending', 'in_queue', 'in_process', 'completed'])->default('pending');
             $table->string('queue_number')->nullable();
             $table->string('transaction_code')->unique();
             $table->enum('payment_method', ['BNI', 'BRI', 'GOPAY', 'OVO', 'DANA', 'SHOPPE'])->nullable();
-            $table->enum('payment_status', ['pending', 'success', 'failed'])->default('pending');
+            $table->enum('payment_status', ['unpaid','paid', 'verified', 'canceled'])->default('unpaid');
             $table->string('payment_proof')->nullable(); // Kolom untuk menyimpan nama file bukti pembayaran
             
             // Menambahkan foreign key untuk hubungan dengan tabel users

@@ -38,14 +38,14 @@ class ServiceSelectionController extends Controller
     $typeOfServiceName = $typeOfService->name;
 
     $user = Auth::user();
-    $invoiceLink = route('payment_validation_form', ['transaction_id' => $transactionId]);
+    $invoiceLink = route('payment_submitted_form', ['transaction_id' => $transactionId]);
 
     Mail::to($user->email)->send(new InvoiceEmail($user, $invoiceLink, $transaction, $typeOfServiceName));
 
     // return redirect()->route('transaction_form', ['service_id' => $selectedServiceId])
     //     ->with('success', 'Invoice sent successfully.');
     return redirect()->back()
-        ->with('success', 'Invoice sent successfully.');
+        ->with('status', 'Invoice sent successfully.');
 }
 
 }

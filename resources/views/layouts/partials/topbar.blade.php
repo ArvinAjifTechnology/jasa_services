@@ -45,20 +45,14 @@
                 <!-- item-->
                 <a href="{{ url('/profile') }}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle me-1"></i>
-                    <span>{{ __('menu.MyAccount') }}</span>
-                </a>
-
-                <!-- item-->
-                <a href="{{ url('contact') }}" class="dropdown-item notify-item">
-                    <i class="mdi mdi-smart-card me-1"></i>
-                    <span>{{ __('menu.Contact') }}</span>
+                    <span>{{ __('my_account') }}</span>
                 </a>
 
                 <!-- item-->
                 <a class="dropdown-item notify-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
                     <i class="mdi mdi-logout me-1"></i>
-                    {{ __("menu.Logout") }}
+                    {{ __("logout") }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
