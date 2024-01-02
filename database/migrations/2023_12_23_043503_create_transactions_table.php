@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
+    /** 
      * Run the migrations.
      */
     public function up(): void
@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('user_motorcycle_id');
+            $table->unsignedBigInteger('user_motorcycle_id')->nullable();
             $table->unsignedBigInteger('type_of_service_id');
             $table->float('total_amount');
             $table->enum('status', ['unpaid', 'in_queue', 'in_process', 'completed'])->default('unpaid');

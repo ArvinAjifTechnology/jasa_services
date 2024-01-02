@@ -52,6 +52,8 @@
         "Model": "Model",
         "Manufacturing Year": "Tahun Produksi",
         "License Plate": "Nomor Plat",
-        "Back to List": "Kembali ke Daftar"
+        "Back to List": "Kembali ke Daftar",
+        "transaction_id": "ID Transaksi",
+        "total_amount" : "Jumlah Tagihan"
         
 }

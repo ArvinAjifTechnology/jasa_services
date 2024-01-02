@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\UserController as AdminUserController;
 use \App\Http\Controllers\Admin\TypeOfServiceController as AdminTypeOfServiceController;
 use \App\Http\Controllers\User\UserMotorCycleController;
-use App\Http\Controllers\ServiceSelectionController;
+use App\Http\Controllers\Transaction\ServiceSelectionController;
+use App\Http\Controllers\Transaction\PaymentValidationController;
 
 
 
@@ -57,12 +58,10 @@ Route::middleware('verified')->group(function () {
         Route::get('/user/service-selection', [ServiceSelectionController::class, 'showServiceSelection']);
         Route::post('/user/process-service-selection', [ServiceSelectionController::class, 'processServiceSelection'])
             ->name('process-service-selection');
-        // Route::resource('/user/rooms', RoomController::class)->only(['index', 'show']);
-        // Route::resource('/user/items', ItemController::class);
-        // Route::resource('/user/borrows', BorrowController::class);
-        // Route::get('/user/borrows/{borrow_code}/submit-borrow-request', [BorrowController::class, 'submitBorrowRequest']);
-        // Route::put('/user/borrows/{borrow_code}/verify-submit-borrow-request', [BorrowController::class, 'verifySubmitBorrowRequest']);
-        // Route::put('/user/borrows/{id}/return', [BorrowController::class, 'returnBorrow'])->name('borrows.return');
+        Route::get('/payment-validation/{transaction_id}', [PaymentValidationController::class, 'showPaymentValidationForm'])
+            ->name('payment_validation_form');
+        Route::post('/process-payment-validation', [PaymentValidationController::class, 'processPaymentValidation'])
+            ->name('process_payment_validation');
     });
 
     Route::middleware('mechanic')->group(function () {
