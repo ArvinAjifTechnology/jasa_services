@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use \App\Http\Controllers\TransactionController;
+use App\Http\Controllers\TransactionReportController;
 use \App\Http\Controllers\User\UserMotorCycleController;
 use App\Http\Controllers\Transaction\PaymentSubmittedController;
 use App\Http\Controllers\Transaction\ServiceSelectionController;
@@ -37,6 +39,10 @@ Route::middleware('verified')->group(function () {
         // route yang hanya bisa diakses oleh admin
         Route::resource('/admin/users', AdminUserController::class)->names('admin.users');
         Route::resource('/admin/type-of-services', AdminTypeOfServiceController::class)->names('admin.type-of-services');
+        Route::post('/admin/users/{user}/reset-password', [AdminUserController::class, 'resetPassword'])->name('admin.users.reset-password');
+        Route::get('/admin/transaction-report', [TransactionReportController::class, 'index'])->name('transaction-report.index');
+        Route::post('/admin/transaction-report', [TransactionReportController::class, 'generateReport'])->name('transaction-report.generate');
+        // Route::post('/admin/transaction-report/export/', [TransactionReportController::class, 'export'])->name('transaction-report.export');
     });
     
     Route::middleware(['user'])->group(function () {
@@ -53,11 +59,11 @@ Route::middleware('verified')->group(function () {
         Route::middleware('auth')->group(function () {
             // route yang hanya bisa diakses oleh mechanic
             Route::get('/', function () {
-                return rediret('/dashboard');
+                return redirect('/dashboard');
             });
             Route::get('/dashboard',  [DashboardController::class, 'index'])->name('dashboard.index');
             Route::resource('transactions', TransactionController::class)->except('create');
-            Route::get('/mechanic/dashboard', 'BorrowerController@dashboard');
+            Route::get('/mechanic/dashboard', 'TransactionerController@dashboard');
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
             Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
             Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -7,7 +7,6 @@
     </div>
     <div class="card-body">
         <p class="card-text">Username: {{ $user->username }}</p>
-        <p class="card-text">User Code: {{ $user->user_code }}</p>
         <p class="card-text">Email: {{ $user->email }}</p>
         <p class="card-text">First Name: {{ $user->first_name }}</p>
         <p class="card-text">Last Name: {{ $user->last_name }}</p>

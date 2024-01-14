@@ -51,7 +51,7 @@
             </li>
             <li class="side-nav-item">
                 <a
-                    href="{{ route('admin.users') }}"
+                    href="{{ route('admin.users.index') }}"
                     class="side-nav-link"
                 >
                     <i class="uil-user"></i>
@@ -60,7 +60,7 @@
             </li>
 
             <li class="side-nav-item">
-                <a href="{{ route('admin.type-of-services') }}" class="side-nav-link">
+                <a href="{{ route('admin.type-of-services.index') }}" class="side-nav-link">
                     <i class="uil-window"></i>
                     <span>{{ __("type_of_services") }}</span>
                 </a>
@@ -71,9 +71,15 @@
             </li>
             @can('user')
             <li class="side-nav-item">
-                <a href="{{ route('user.user-motorcycles') }}" class="side-nav-link">
+                <a href="{{ url('/user/user-motorcycles') }}" class="side-nav-link">
                     <i class="uil-shopping-cart-alt"></i>
                     <span>{{ __("manage_motorcycle") }}</span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ url('/transactions') }}" class="side-nav-link">
+                    <i class="uil-shopping-cart-alt"></i>
+                    <span>{{ __("transaction") }}</span>
                 </a>
             </li>
             @endcan
@@ -85,7 +91,7 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="" class="side-nav-link">
+                <a href="{{ route('transaction-report.index') }}" class="side-nav-link">
                     <i class="uil-chart"></i>
                     <span>{{ __("transaction_report") }}</span>
                 </a>

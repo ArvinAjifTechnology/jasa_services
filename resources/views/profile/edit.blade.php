@@ -17,11 +17,6 @@
                             <input type="text" class="form-control" name="username" value="{{ $user->username }}" />
                         </div>
                         <div class="mb-3">
-                            <label for="user_code" class="form-label">User Code:</label>
-                            <input type="text" class="form-control" name="user_code" value="{{ $user->user_code }}"
-                                readonly />
-                        </div>
-                        <div class="mb-3">
                             <label for="email" class="form-label">Email:</label>
                             <input type="email" class="form-control" name="email" value="{{ $user->email }}" />
                         </div>

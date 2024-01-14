@@ -39,7 +39,7 @@
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                 <!-- item-->
                 <div class=" dropdown-header noti-title">
-                    <h6 class="text-overflow m-0">{{ __('menu.Welcome') }}</h6>
+                    <h6 class="text-overflow m-0">{{ __('welcome') }}</h6>
                 </div>
 
                 <!-- item-->

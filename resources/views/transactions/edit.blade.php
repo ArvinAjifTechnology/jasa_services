@@ -21,7 +21,7 @@
         <div class="mb-3">
             <label for="payment_proof" class="form-label">Payment Proof:</label>
             @if ($transaction->payment_proof)
-            <img src="{{ asset('storage/' . $transaction->payment_proof) }}" alt="Payment Proof">
+            <img src="{{ asset('storage/' . $transaction->payment_proof) }}" alt="Payment Proof" width="200px">
             @else
             <p>No payment proof available</p>
             @endif

@@ -51,27 +51,11 @@
             @guest
             @yield('content')
             @endguest
-
+            @auth
             <!-- Footer Start -->
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> © inventaris_sekolah.com
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-md-end footer-links d-none d-md-block">
-                                <a href="{{ url('/about') }}">About</a>
-                                <a href="{{ url('/contact') }}">Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            @include('layouts.partials.footer')
             <!-- end Footer -->
-
+            @endauth
         </div>
 
         <!-- ============================================================== -->
@@ -81,7 +65,7 @@
 
     </div>
     <!-- END wrapper -->
-
+    @auth
     <!-- Right Sidebar -->
     <div class="end-bar">
 
@@ -181,6 +165,7 @@
 
     <div class="rightbar-overlay"></div>
     <!-- /End-bar -->
+    @endauth
 
     <!-- bundle -->
     <script src="{{ asset('') }}assets/js/vendor.min.js"></script>

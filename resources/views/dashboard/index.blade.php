@@ -7,6 +7,7 @@
         <h2>Dashboard</h2>
 @can('admin')
         <div class="row">
+            <h1> Selamat Datang, {{ auth()->user()->full_name }}</h1>
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">Recent Transactions</div>
@@ -34,5 +35,21 @@
             </div>
         </div>
     </div>
+@endcan
+
+@can('user')
+<div class="row">
+    <div class="col-md-12">
+        <h1> Selamat Datang, {{ auth()->user()->full_name }}</h1>
+    </div>
+</div>
+@endcan
+
+@can('mechanic')
+<div class="row">
+    <div class="col-md-12">
+        <h1> Selamat Datang, {{ auth()->user()->full_name }}</h1>
+    </div>
+</div>
 @endcan
 @endsection

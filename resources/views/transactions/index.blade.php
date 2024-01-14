@@ -5,21 +5,21 @@
 @section('content')
     @can('user')
     <div class="container">
-        <h2>{{ __('Transactions') }}</h2>
+        <h2>{{ __('transactions') }}</h2>
 
-        <a href="{{ route('transactions.create') }}" class="btn btn-primary mb-3">{{ __('Add Transaction') }}</a>
+        <a href="{{ route('transactions.create') }}" class="btn btn-primary mb-3">{{ __('add_transaction') }}</a>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th>{{ __('ID') }}</th>
-                    <th>{{ __('User') }}</th>
-                    <th>{{ __('Service Type') }}</th>
-                    <th>{{ __('Total Amount') }}</th>
-                    <th>{{ __('Status') }}</th>
-                    <th>{{ __('Payment Method') }}</th>
-                    <th>{{ __('Payment Status') }}</th>
-                    <th>{{ __('Actions') }}</th>
+                    <th>{{ __('id') }}</th>
+                    <th>{{ __('user') }}</th>
+                    <th>{{ __('service_type') }}</th>
+                    <th>{{ __('total_amount') }}</th>
+                    <th>{{ __('status') }}</th>
+                    <th>{{ __('payment_method') }}</th>
+                    <th>{{ __('payment_status') }}</th>
+                    <th>{{ __('actions') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,7 +34,7 @@
                         <td>{{ $transaction->payment_status }}</td>
                         <td>
                             <a href="{{ route('transactions.show', $transaction->id) }}"
-                                class="btn btn-info">{{ __('View') }}</a>
+                                class="btn btn-info">{{ __('view') }}</a>
                         </td>
                     </tr>
                 @endforeach
@@ -45,21 +45,18 @@
 
     @can('admin')
     <div class="container">
-        <h2>{{ __('Transactions') }}</h2>
-
-        <a href="{{ route('transactions.create') }}" class="btn btn-primary mb-3">{{ __('Add Transaction') }}</a>
-
+        <h2>{{ __('transactions') }}</h2>
         <table class="table">
             <thead>
                 <tr>
-                    <th>{{ __('ID') }}</th>
-                    <th>{{ __('User') }}</th>
-                    <th>{{ __('Service Type') }}</th>
-                    <th>{{ __('Total Amount') }}</th>
-                    <th>{{ __('Status') }}</th>
-                    <th>{{ __('Payment Method') }}</th>
-                    <th>{{ __('Payment Status') }}</th>
-                    <th>{{ __('Actions') }}</th>
+                    <th>{{ __('id') }}</th>
+                    <th>{{ __('user') }}</th>
+                    <th>{{ __('service_type') }}</th>
+                    <th>{{ __('total_amount') }}</th>
+                    <th>{{ __('status') }}</th>
+                    <th>{{ __('payment_method') }}</th>
+                    <th>{{ __('payment_status') }}</th>
+                    <th>{{ __('actions') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -74,15 +71,15 @@
                         <td>{{ $transaction->payment_status }}</td>
                         <td>
                             <a href="{{ route('transactions.show', $transaction->id) }}"
-                                class="btn btn-info">{{ __('View') }}</a>
+                                class="btn btn-info">{{ __('view') }}</a>
                             <a href="{{ route('transactions.edit', $transaction->id) }}"
-                                class="btn btn-warning">{{ __('Edit') }}</a>
+                                class="btn btn-warning">{{ __('edit') }}</a>
                             <form action="{{ route('transactions.destroy', $transaction->id) }}" method="POST"
                                 class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('{{ __('Are you sure you want to delete this transaction?') }}')">{{ __('Delete') }}</button>
+                                    onclick="return confirm('{{ __('are_you_sure_you_want_to_delete_this_transaction') }}')">{{ __('delete') }}</button>
                             </form>
                         </td>
                     </tr>
@@ -93,21 +90,21 @@
     @endcan
     @can('mechanic')
     <div class="container">
-        <h2>{{ __('Transactions') }}</h2>
+        <h2>{{ __('transactions') }}</h2>
 
-        <a href="{{ route('transactions.create') }}" class="btn btn-primary mb-3">{{ __('Add Transaction') }}</a>
+        <a href="{{ route('transactions.create') }}" class="btn btn-primary mb-3">{{ __('add_transaction') }}</a>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th>{{ __('ID') }}</th>
-                    <th>{{ __('User') }}</th>
-                    <th>{{ __('Service Type') }}</th>
-                    <th>{{ __('Total Amount') }}</th>
-                    <th>{{ __('Status') }}</th>
-                    <th>{{ __('Payment Method') }}</th>
-                    <th>{{ __('Payment Status') }}</th>
-                    <th>{{ __('Actions') }}</th>
+                    <th>{{ __('id') }}</th>
+                    <th>{{ __('user') }}</th>
+                    <th>{{ __('service_type') }}</th>
+                    <th>{{ __('total_amount') }}</th>
+                    <th>{{ __('status') }}</th>
+                    <th>{{ __('payment_method') }}</th>
+                    <th>{{ __('payment_status') }}</th>
+                    <th>{{ __('actions') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -122,9 +119,9 @@
                         <td>{{ $transaction->payment_status }}</td>
                         <td>
                             <a href="{{ route('transactions.show', $transaction->id) }}"
-                                class="btn btn-info">{{ __('View') }}</a>
+                                class="btn btn-info">{{ __('view') }}</a>
                             <a href="{{ route('transactions.edit', $transaction->id) }}"
-                                class="btn btn-warning">{{ __('Edit') }}</a>
+                                class="btn btn-warning">{{ __('edit') }}</a>
                         </td>
                     </tr>
                 @endforeach

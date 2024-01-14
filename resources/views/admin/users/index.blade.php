@@ -48,7 +48,7 @@
                                     class="fas fa-eye"></i> {{ __('show') }}</a>
                             <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-warning"><i
                                     class="fas fa-edit"></i> {{ __('edit') }}</a>
-                            <form action="" method="POST"
+                            <form action="{{ route('admin.users.reset-password', $user->id) }}" method="POST"
                                 class="d-inline" onsubmit="return confirm('{{ __('are_you_sure_reset_password') }}')">
                                 @csrf
                                 <button type="submit" class="btn btn-sm btn-primary">

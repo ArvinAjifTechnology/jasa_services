@@ -6,7 +6,7 @@
     <div class="container">
         <h2>{{ __('Edit Motorcycle') }}</h2>
 
-        <form action="{{ route('user_motorcycles.update', $userMotorcycle->id) }}" method="POST">
+        <form action="{{ route('user.user-motorcycles.update', $userMotorcycle->id) }}" method="POST">
             @csrf
             @method('PUT')
 
